@@ -206,10 +206,7 @@ vector <float> dot (const vector <float>& m1, const vector <float>& m2, const in
     
     vector <float> output (m1_rows*m2_columns, 0);
 #if defined(BLOCK_TILE)
-    const int block_size = 8 / sizeof(float); // 64 = common cache line size
-    int N = m1_rows;
-    int M = m2_columns; 
-    int K = m1_columns;
+    const int block_size = 64 / sizeof(float); // 64 = common cache line size
 
     // The two outer loops iterate over the blocks with coordinates,
     // not block index.
